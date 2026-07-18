@@ -1,0 +1,151 @@
+/*==================================================
+   YEN LEE FIREWELD — PAGE TRANSITIONS
+   Professional glassmorphism transition: a softly
+   blurred, translucent glass surface fades over the
+   page between navigations, with the logo presented
+   inside a subtle glass card for a premium feel.
+===================================================*/
+
+.page-transition{
+    position:fixed;
+    inset:0;
+    z-index:200000;
+    pointer-events:none;
+}
+
+/* faint dark base beneath the glass so the blur has something to catch */
+.page-transition .pt-back{
+    position:absolute;
+    inset:0;
+    background:#0a0c0f;
+    opacity:.35;
+    transition:opacity 1s cubic-bezier(.4,0,.2,1);
+}
+
+.page-transition .panel-wipe{
+    position:absolute;
+    inset:0;
+    background:
+        radial-gradient(circle at 30% 20%, rgba(214,40,40,.16) 0%, rgba(214,40,40,0) 55%),
+        rgba(255,255,255,.06);
+    -webkit-backdrop-filter:blur(28px) saturate(160%);
+    backdrop-filter:blur(28px) saturate(160%);
+    opacity:1;
+    transform:scale(1.015);
+    transition:opacity 1.05s cubic-bezier(.4,0,.2,1), transform 1.05s cubic-bezier(.4,0,.2,1);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* glass card holding the logo — the signature glassmorphism element */
+.page-transition .pt-mark{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+    padding:52px 80px;
+    border-radius:28px;
+    background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.28);
+    -webkit-backdrop-filter:blur(18px) saturate(160%);
+    backdrop-filter:blur(18px) saturate(160%);
+    box-shadow:
+        0 24px 60px rgba(0,0,0,.30),
+        inset 0 1px 0 rgba(255,255,255,.35);
+    opacity:0;
+    transform:translateY(10px) scale(.96);
+    transition:opacity .5s cubic-bezier(.4,0,.2,1) .25s, transform .5s cubic-bezier(.4,0,.2,1) .25s;
+}
+
+.page-transition .pt-mark img{
+    height:92px;
+    width:auto;
+    opacity:.98;
+    filter:drop-shadow(0 6px 16px rgba(0,0,0,.3));
+}
+
+.page-transition .pt-mark span{
+    font-family:'Poppins', sans-serif;
+    font-size:14px;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:#fff;
+    text-shadow:0 1px 6px rgba(0,0,0,.35);
+}
+
+/* ---------- default state: glass surface fully covers the viewport ---------- */
+
+body:not(.pt-loaded) .pt-back{
+    opacity:.35;
+}
+
+body:not(.pt-loaded) .panel-wipe{
+    opacity:1;
+    transform:scale(1);
+}
+
+body:not(.pt-loaded):not(.pt-leaving) .pt-mark{
+    opacity:1;
+    transform:translateY(0) scale(1);
+}
+
+/* ---------- revealed: glass fades out smoothly, page shows through ---------- */
+
+body.pt-loaded .pt-back{
+    opacity:0;
+    transition:opacity .9s cubic-bezier(.4,0,.2,1);
+}
+
+body.pt-loaded .panel-wipe{
+    opacity:0;
+    transform:scale(1.015);
+    transition:opacity 1.05s cubic-bezier(.4,0,.2,1) .05s, transform 1.05s cubic-bezier(.4,0,.2,1) .05s;
+}
+
+body.pt-loaded .pt-mark{
+    opacity:0;
+    transform:translateY(-6px) scale(.98);
+    transition:opacity .35s ease, transform .35s ease;
+}
+
+/* ---------- leaving: glass fades back in over the current page ---------- */
+
+body.pt-leaving .pt-back{
+    opacity:.35;
+    transition:opacity .85s cubic-bezier(.4,0,.2,1);
+}
+
+body.pt-leaving .panel-wipe{
+    opacity:1;
+    transform:scale(1);
+    transition:opacity .95s cubic-bezier(.4,0,.2,1), transform .95s cubic-bezier(.4,0,.2,1);
+}
+
+body.pt-leaving .pt-mark{
+    opacity:1;
+    transform:translateY(0) scale(1);
+    transition:opacity .5s cubic-bezier(.4,0,.2,1) .3s, transform .5s cubic-bezier(.4,0,.2,1) .3s;
+}
+
+@media (max-width:576px){
+    .page-transition .pt-mark{
+        padding:34px 46px;
+        gap:14px;
+        border-radius:22px;
+    }
+    .page-transition .pt-mark img{
+        height:60px;
+    }
+    .page-transition .pt-mark span{
+        font-size:11px;
+        letter-spacing:.22em;
+    }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .page-transition{
+        display:none !important;
+    }
+}

@@ -1,0 +1,388 @@
+/* ==========================================================================
+   YEN LEE FIREWELD — PREMIUM 2026 FIRE THEME
+   Loaded LAST on every page. Re-skins the entire site into a dark,
+   glassmorphic, fire-lit enterprise design without touching page content.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+  --ink:#05060a;
+  --ink-2:#0a0d14;
+  --panel:rgba(18,20,28,.62);
+  --panel-solid:#12141c;
+  --line:rgba(255,255,255,.08);
+  --line-2:rgba(255,255,255,.14);
+  --text:#eef0f4;
+  --text-dim:#9aa0ad;
+  --fire-1:#ff5b1f;
+  --fire-2:#ff2d2d;
+  --fire-3:#ffb020;
+  --gold:#ffcf6a;
+  --glow: 0 0 40px rgba(255,91,31,.35);
+  --radius:18px;
+  --ff-head:'Space Grotesk', 'Inter', sans-serif;
+  --ff-body:'Inter', Arial, sans-serif;
+}
+
+*{ scrollbar-width:thin; scrollbar-color: var(--fire-2) var(--ink); }
+::-webkit-scrollbar{ width:9px; height:9px; }
+::-webkit-scrollbar-track{ background:var(--ink); }
+::-webkit-scrollbar-thumb{ background:linear-gradient(var(--fire-1),var(--fire-2)); border-radius:10px; }
+
+html{ background:var(--ink); }
+
+body{
+  background:var(--ink) !important;
+  color:var(--text) !important;
+  font-family:var(--ff-body) !important;
+  position:relative;
+  overflow-x:clip;
+}
+
+/* Global fire-lit backdrop grid + noise, sits behind everything */
+body::before{
+  content:'';
+  position:fixed; inset:0; z-index:-3;
+  background:
+    radial-gradient(1200px 600px at 15% -10%, rgba(255,91,31,.18), transparent 60%),
+    radial-gradient(1000px 700px at 110% 10%, rgba(255,45,45,.14), transparent 55%),
+    radial-gradient(900px 500px at 50% 120%, rgba(255,176,32,.10), transparent 55%),
+    linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+}
+body::after{
+  content:'';
+  position:fixed; inset:0; z-index:-2; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size:44px 44px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 90%);
+}
+
+h1,h2,h3,h4,h5,h6{ font-family:var(--ff-head) !important; letter-spacing:-.01em; }
+
+a{ color:inherit; }
+
+/* ===================== CURSOR GLOW ===================== */
+#cursor-glow{
+  position:fixed; width:420px; height:420px; border-radius:50%;
+  pointer-events:none; z-index:2;
+  background:radial-gradient(circle, rgba(255,91,31,.14), transparent 70%);
+  transform:translate(-50%,-50%);
+  left:50%; top:50%;
+  transition:opacity .3s;
+  mix-blend-mode:screen;
+}
+
+/* ===================== SCROLL PROGRESS ===================== */
+#scroll-progress{
+  position:fixed; top:0; left:0; height:3px; width:0%;
+  background:linear-gradient(90deg,var(--fire-3),var(--fire-1),var(--fire-2));
+  z-index:99999; box-shadow:0 0 12px rgba(255,91,31,.7);
+  transition:width .08s linear;
+}
+
+/* ===================== PARTICLE CANVAS ===================== */
+#ember-canvas{
+  position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.55;
+}
+
+/* ===================== TOP BAR ===================== */
+.top-bar{
+  background:linear-gradient(90deg, #1a0503, #2b0a06) !important;
+  border-bottom:1px solid var(--line);
+  color:var(--text-dim) !important;
+}
+.top-bar a{ color:var(--text) !important; }
+
+/* ===================== HEADER / NAV (glass) ===================== */
+header, #header{
+  background:rgba(6,7,11,.55) !important;
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  border-bottom:1px solid var(--line) !important;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+header.scrolled, #header.scrolled{
+  background:rgba(6,7,11,.85) !important;
+}
+.logo-text h1{
+  background:linear-gradient(90deg,var(--gold),var(--fire-1));
+  -webkit-background-clip:text; background-clip:text; color:transparent !important;
+}
+.logo-text p{ color:var(--text-dim) !important; }
+
+nav ul li a{
+  color:var(--text) !important;
+  position:relative;
+  font-weight:500;
+}
+nav ul li a::after{
+  content:'';
+  position:absolute; left:0; bottom:-6px; width:0; height:2px;
+  background:linear-gradient(90deg,var(--fire-3),var(--fire-2));
+  transition:width .25s ease;
+}
+nav ul li a:hover::after, nav ul li a.active::after{ width:100%; }
+nav ul li a.active{ color:var(--fire-3) !important; }
+
+.dropdown-menu{
+  background:rgba(10,11,16,.92) !important;
+  backdrop-filter:blur(20px);
+  border:1px solid var(--line-2) !important;
+  border-radius:14px !important;
+  box-shadow:0 25px 60px rgba(0,0,0,.55), 0 0 0 1px rgba(255,91,31,.08) !important;
+  overflow:hidden;
+}
+.dropdown-menu li a{
+  color:var(--text-dim) !important;
+  transition:.2s;
+}
+.dropdown-menu li a:hover{
+  color:var(--fire-3) !important;
+  background:rgba(255,91,31,.08) !important;
+  padding-left:24px !important;
+}
+
+header .btn, .btn, a.btn{
+  background:linear-gradient(135deg,var(--fire-1),var(--fire-2)) !important;
+  border:none !important;
+  color:#fff !important;
+  font-weight:600 !important;
+  border-radius:999px !important;
+  box-shadow:0 8px 24px rgba(255,45,45,.35);
+  transition:transform .25s ease, box-shadow .25s ease !important;
+  position:relative;
+  overflow:hidden;
+}
+header .btn:hover, .btn:hover, a.btn:hover{
+  transform:translateY(-2px) scale(1.03);
+  box-shadow:0 14px 34px rgba(255,45,45,.5);
+  color:#fff !important;
+}
+
+.menu-toggle{ color:var(--text) !important; }
+
+/* ===================== PAGE BANNER / BREADCRUMB ===================== */
+.page-banner{
+  position:relative;
+  background:
+    radial-gradient(700px 300px at 20% 0%, rgba(255,91,31,.25), transparent 70%),
+    linear-gradient(180deg, #0c0d13, var(--ink)) !important;
+  border-bottom:1px solid var(--line);
+  padding-top:150px !important;
+}
+.page-banner h1{
+  background:linear-gradient(90deg,#fff, var(--gold));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.breadcrumb, .breadcrumb a, .breadcrumb .current{ color:var(--text-dim) !important; }
+.breadcrumb a:hover{ color:var(--fire-3) !important; }
+
+/* ===================== GENERIC SECTIONS / CARDS ===================== */
+section{ position:relative; }
+
+.product-card, .service-card, .card, .brand-card, .project-card, .cert-card,
+.industry-card, .app-card, .testimonial-card, .blog-card, .team-card{
+  background:var(--panel) !important;
+  border:1px solid var(--line) !important;
+  border-radius:var(--radius) !important;
+  backdrop-filter:blur(14px);
+  box-shadow:0 20px 45px rgba(0,0,0,.35);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s !important;
+  color:var(--text) !important;
+}
+.product-card:hover, .service-card:hover, .card:hover, .brand-card:hover,
+.project-card:hover, .industry-card:hover, .app-card:hover{
+  transform:translateY(-10px) !important;
+  border-color:rgba(255,91,31,.5) !important;
+  box-shadow:0 30px 70px rgba(255,45,45,.18), var(--glow) !important;
+}
+.product-card h3, .service-card h3, .card h3, .project-card h3{ color:var(--text) !important; }
+.product-card p, .service-card p, .card p, .project-card p{ color:var(--text-dim) !important; }
+
+/* Headings / section titles used across pages
+   NOTE: section backgrounds (.services-section etc.) are still light
+   (white/#f7f7f7), so these must stay red/dark — NOT the dark-theme
+   --text/--fire-3 variables, which render as near-invisible white-on-white. */
+.section-title h4{
+  color:#d62828 !important;
+  letter-spacing:.14em; text-transform:uppercase; font-size:13px;
+}
+.section-title h2{ color:#111111 !important; }
+p, li, span, td, .detail-lead, .tab-panel p{ color:var(--text-dim); }
+.detail-info h1, .detail-info h1 *{ color:var(--text) !important; }
+
+/* ===================== PRODUCT DETAIL ===================== */
+.detail-gallery, .gallery-main{
+  background:var(--panel-solid) !important;
+  border:1px solid var(--line) !important;
+  border-radius:var(--radius) !important;
+  overflow:hidden;
+}
+.gallery-thumbs button{
+  border:1px solid var(--line) !important;
+  background:var(--panel-solid) !important;
+  border-radius:10px !important;
+  overflow:hidden;
+}
+.gallery-thumbs button.active{ border-color:var(--fire-2) !important; box-shadow:0 0 0 2px rgba(255,45,45,.3); }
+
+.cat-tag{
+  display:inline-block; padding:6px 14px; border-radius:999px;
+  background:linear-gradient(135deg, rgba(255,91,31,.18), rgba(255,45,45,.10));
+  border:1px solid rgba(255,91,31,.4);
+  color:var(--gold) !important; font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+}
+.sku-line, .sku-line strong{ color:var(--text-dim) !important; }
+.rating-row{ color:var(--fire-3) !important; }
+.rt-text{ color:var(--text-dim) !important; }
+
+.cert-pill{
+  background:rgba(255,255,255,.05) !important;
+  border:1px solid var(--line-2) !important;
+  color:var(--text) !important;
+  border-radius:999px;
+}
+.quick-specs{
+  background:var(--panel) !important;
+  border:1px solid var(--line) !important;
+  border-radius:14px !important;
+}
+.qs-item h5{ color:var(--fire-3) !important; font-size:11px; text-transform:uppercase; letter-spacing:.08em; }
+.qs-item p{ color:var(--text) !important; }
+
+.btn-primary-lg{
+  background:linear-gradient(135deg,var(--fire-1),var(--fire-2)) !important;
+  color:#fff !important; border-radius:999px !important; border:none !important;
+  box-shadow:0 10px 30px rgba(255,45,45,.4);
+}
+.btn-ghost-lg{
+  background:rgba(255,255,255,.04) !important;
+  border:1px solid var(--line-2) !important;
+  color:var(--text) !important; border-radius:999px !important;
+  backdrop-filter:blur(10px);
+}
+.btn-primary-lg:hover, .btn-ghost-lg:hover{ transform:translateY(-3px); }
+
+.trust-strip{ border-top:1px solid var(--line) !important; }
+.trust-item{ color:var(--text-dim) !important; }
+
+/* Tabs */
+.tab-nav{ border-bottom:1px solid var(--line) !important; gap:6px; }
+.tab-nav button{
+  background:transparent !important; color:var(--text-dim) !important;
+  border:1px solid transparent !important; border-radius:10px 10px 0 0 !important;
+}
+.tab-nav button.active{
+  color:var(--fire-3) !important;
+  border-color:var(--line) !important;
+  border-bottom-color:var(--ink) !important;
+  background:var(--panel) !important;
+}
+.spec-table{ width:100%; border-collapse:collapse; }
+.spec-table tr{ border-bottom:1px solid var(--line); }
+.spec-table td{ padding:12px 10px; color:var(--text-dim) !important; }
+.spec-table tr td:first-child{ color:var(--text) !important; font-weight:600; width:35%; }
+.feature-list li{
+  position:relative; padding-left:28px; margin-bottom:10px; color:var(--text-dim);
+}
+.feature-list li::before{
+  content:'⚡'; position:absolute; left:0; color:var(--fire-3);
+}
+.download-list a{
+  background:var(--panel) !important; border:1px solid var(--line) !important;
+  border-radius:12px !important; color:var(--text) !important;
+}
+.download-list a:hover{ border-color:var(--fire-2) !important; }
+.dl-meta{ color:var(--text-dim) !important; }
+
+/* ===================== FORMS ===================== */
+input, textarea, select{
+  background:rgba(255,255,255,.04) !important;
+  border:1px solid var(--line-2) !important;
+  color:var(--text) !important;
+  border-radius:10px !important;
+}
+input:focus, textarea:focus, select:focus{
+  outline:none !important;
+  border-color:var(--fire-2) !important;
+  box-shadow:0 0 0 3px rgba(255,45,45,.15) !important;
+}
+input::placeholder, textarea::placeholder{ color:var(--text-dim) !important; }
+
+/* ===================== FOOTER ===================== */
+footer{
+  background:linear-gradient(180deg, var(--ink-2), #000) !important;
+  border-top:1px solid var(--line) !important;
+  color:var(--text-dim) !important;
+}
+footer h3, footer h4{ color:var(--text) !important; }
+footer a{ color:var(--text-dim) !important; transition:.2s; }
+footer a:hover{ color:var(--fire-3) !important; }
+
+/* ===================== FLOATING ACTIONS ===================== */
+.call-float, .floating-email{
+  box-shadow:0 12px 30px rgba(0,0,0,.5) !important;
+}
+
+/* ===================== MAGNETIC / GLASS BUTTONS ===================== */
+.magnetic{ display:inline-block; will-change:transform; }
+
+/* ===================== REVEAL ANIMATIONS ===================== */
+.reveal-up{ opacity:0; transform:translateY(36px); transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+.reveal-up.in-view{ opacity:1; transform:translateY(0); }
+
+/* ===================== HOMEPAGE HERO OVERRIDES ===================== */
+.hero, #hero, .home-hero{
+  position:relative; overflow:hidden;
+  background:radial-gradient(ellipse 90% 60% at 50% -10%, rgba(255,91,31,.25), transparent 60%), var(--ink) !important;
+}
+#hero-3d-canvas{
+  position:absolute; inset:0; z-index:0; opacity:.9;
+}
+
+/* Animated counters */
+.counter-num, .stat-num, .counter{
+  background:linear-gradient(90deg,var(--gold),var(--fire-1));
+  -webkit-background-clip:text; background-clip:text; color:transparent !important;
+  font-family:var(--ff-head) !important; font-weight:700 !important;
+  font-size:clamp(32px,4vw,52px) !important;
+}
+.statistics{
+  background:linear-gradient(180deg, transparent, rgba(255,91,31,.06), transparent) !important;
+}
+.stat-box{
+  background:var(--panel) !important;
+  border:1px solid var(--line) !important;
+  border-radius:var(--radius) !important;
+  backdrop-filter:blur(14px);
+  padding:32px 18px !important;
+  text-align:center;
+  transition:transform .3s ease, border-color .3s ease;
+}
+.stat-box:hover{ transform:translateY(-6px); border-color:rgba(255,91,31,.4) !important; }
+.stat-box p{ color:var(--text-dim) !important; margin-top:6px; }
+
+/* Preloader restyle */
+#preloader{
+  background:var(--ink) !important;
+}
+#preloader h2{
+  background:linear-gradient(90deg,var(--gold),var(--fire-1));
+  -webkit-background-clip:text; background-clip:text; color:transparent !important;
+}
+.spinner{
+  border-color:rgba(255,255,255,.1) !important;
+  border-top-color:var(--fire-2) !important;
+}
+
+/* Mobile menu glass */
+@media (max-width:900px){
+  nav ul{
+    background:rgba(6,7,11,.97) !important;
+    backdrop-filter:blur(20px);
+    border-top:1px solid var(--line);
+  }
+}

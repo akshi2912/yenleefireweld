@@ -1,0 +1,339 @@
+/* ==========================================================================
+   YEN LEE FIREWELD — PRODUCT & CATEGORY EXPERIENCE LAYER
+   Loaded AFTER premium-2026.css. Upgrades .catalog-card / .product-card /
+   category hub pages / product detail galleries with glass, motion and
+   depth — reuses the --ink / --fire / --gold tokens already on the page.
+   Pure CSS + one small JS file (product-experience.js) for reveal/tilt.
+   ========================================================================== */
+
+/* ---------- scroll-reveal base (JS toggles .in-view) ---------- */
+.catalog-card,
+.product-card,
+.category-hero-content,
+.rk-feature,
+.rk-stat{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
+}
+.catalog-card.in-view,
+.product-card.in-view,
+.category-hero-content.in-view,
+.rk-feature.in-view,
+.rk-stat.in-view{
+  opacity:1;
+  transform:translateY(0);
+}
+@media (prefers-reduced-motion: reduce){
+  .catalog-card,.product-card,.category-hero-content,.rk-feature,.rk-stat{
+    opacity:1 !important; transform:none !important; transition:none !important;
+  }
+}
+
+/* ==========================================================================
+   CATALOG CARD (category hub pages: foam-concentrates.html, rescue-kit.html…)
+   ========================================================================== */
+.catalog-grid{
+  perspective:1200px;
+}
+
+.catalog-card{
+  position:relative;
+  background:linear-gradient(180deg, var(--panel), rgba(18,20,28,.85)) !important;
+  border:1px solid var(--line) !important;
+  border-radius:16px !important;
+  box-shadow:0 10px 30px rgba(0,0,0,.35) !important;
+  overflow:hidden;
+  transform-style:preserve-3d;
+  will-change:transform;
+  transition:transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease, border-color .35s ease;
+}
+
+/* animated gradient border glow, sits behind the card */
+.catalog-card::before{
+  content:'';
+  position:absolute;
+  inset:-1px;
+  border-radius:17px;
+  padding:1px;
+  background:linear-gradient(135deg, var(--fire-1), transparent 30%, transparent 70%, var(--gold));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  opacity:0;
+  transition:opacity .4s ease;
+  pointer-events:none;
+  z-index:1;
+}
+
+/* diagonal light sweep on hover */
+.catalog-card::after{
+  content:'';
+  position:absolute;
+  top:0; left:-60%;
+  width:40%; height:100%;
+  background:linear-gradient(115deg, transparent, rgba(255,255,255,.16), transparent);
+  transform:skewX(-20deg);
+  transition:left .75s ease;
+  pointer-events:none;
+  z-index:2;
+}
+
+.catalog-card:hover{
+  box-shadow:0 24px 55px rgba(0,0,0,.5), var(--glow) !important;
+  border-color:var(--line-2) !important;
+}
+.catalog-card:hover::before{ opacity:1; }
+.catalog-card:hover::after{ left:130%; }
+
+.catalog-img{
+  background:radial-gradient(circle at 50% 35%, rgba(255,91,31,.10), transparent 65%), rgba(255,255,255,.03) !important;
+  position:relative;
+  z-index:1;
+}
+.catalog-img img{
+  filter:drop-shadow(0 10px 18px rgba(0,0,0,.45));
+  transition:transform .5s cubic-bezier(.16,1,.3,1);
+}
+.catalog-card:hover .catalog-img img{
+  transform:scale(1.08) translateY(-4px);
+}
+
+.catalog-label{
+  position:relative;
+  z-index:1;
+  background:rgba(255,255,255,.04) !important;
+  color:var(--text) !important;
+  border-top:1px solid var(--line);
+  letter-spacing:.4px;
+  transition:background .35s ease, color .35s ease;
+}
+.catalog-card:hover .catalog-label{
+  background:linear-gradient(90deg, var(--fire-1), var(--fire-2)) !important;
+  color:#fff !important;
+}
+
+/* small "view" affordance that slides in */
+.catalog-card .catalog-view{
+  position:absolute;
+  top:14px; right:14px;
+  z-index:3;
+  width:34px; height:34px;
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(255,255,255,.08);
+  border:1px solid var(--line-2);
+  color:var(--text);
+  font-size:14px;
+  opacity:0;
+  transform:translateY(-8px);
+  transition:opacity .3s ease, transform .3s ease;
+}
+.catalog-card:hover .catalog-view{ opacity:1; transform:translateY(0); }
+
+/* ==========================================================================
+   CATEGORY HERO (new .category-hero banner used on rescue-kit / safety pages)
+   ========================================================================== */
+.category-hero{
+  position:relative;
+  min-height:56vh;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  background:linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+}
+.category-hero .ch-bg{
+  position:absolute; inset:0;
+  background-size:cover;
+  background-position:center;
+  opacity:.42;
+  transform:scale(1.08);
+  animation:chSlowZoom 18s ease-in-out infinite alternate;
+}
+@keyframes chSlowZoom{ from{transform:scale(1.08);} to{transform:scale(1.16);} }
+.category-hero .ch-scrim{
+  position:absolute; inset:0;
+  background:linear-gradient(90deg, var(--ink) 15%, rgba(5,6,10,.55) 55%, transparent 100%),
+             linear-gradient(0deg, var(--ink) 0%, transparent 30%);
+}
+.category-hero-content{
+  position:relative; z-index:2;
+  max-width:640px;
+  padding:60px 0;
+}
+.category-hero .ch-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--gold);
+  padding:8px 16px;
+  border:1px solid rgba(255,207,106,.35);
+  border-radius:30px;
+  background:rgba(255,207,106,.06);
+  margin-bottom:22px;
+}
+.category-hero h1{
+  font-family:var(--ff-head);
+  font-size:clamp(34px,4.5vw,56px);
+  line-height:1.08;
+  margin-bottom:18px;
+  background:linear-gradient(90deg, #fff 30%, var(--fire-3) 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.category-hero p{
+  color:var(--text-dim);
+  font-size:17px;
+  line-height:1.8;
+  margin-bottom:30px;
+}
+.category-hero .cta-buttons{ display:flex; gap:16px; flex-wrap:wrap; }
+
+/* quick stat strip under hero */
+.rk-stats{
+  position:relative; z-index:2;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:18px;
+  max-width:1140px;
+  margin:-40px auto 60px;
+  padding:0 20px;
+}
+.rk-stat{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:22px 18px;
+  text-align:center;
+  backdrop-filter:blur(10px);
+}
+.rk-stat .rk-num{
+  font-family:var(--ff-head);
+  font-size:30px;
+  font-weight:700;
+  background:linear-gradient(90deg,var(--fire-3),var(--gold));
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+}
+.rk-stat .rk-label{ font-size:13px; color:var(--text-dim); margin-top:4px; letter-spacing:.3px; }
+
+/* feature/benefit strip */
+.rk-features{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:22px;
+  margin:20px 0 60px;
+}
+.rk-feature{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:26px 24px;
+  transition:transform .35s cubic-bezier(.16,1,.3,1), border-color .35s ease, box-shadow .35s ease;
+}
+.rk-feature:hover{
+  transform:translateY(-6px);
+  border-color:var(--line-2);
+  box-shadow:0 18px 40px rgba(0,0,0,.4);
+}
+.rk-feature .rk-icon{
+  width:48px; height:48px;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:12px;
+  margin-bottom:16px;
+  background:linear-gradient(135deg, rgba(255,91,31,.18), rgba(255,207,106,.10));
+  border:1px solid rgba(255,176,32,.25);
+}
+.rk-feature .rk-icon img,
+.rk-feature .rk-icon svg{ width:26px; height:26px; }
+.rk-feature h3{ font-size:18px; margin-bottom:8px; color:var(--text); }
+.rk-feature p{ font-size:14.5px; color:var(--text-dim); line-height:1.7; margin:0; }
+
+/* "new" ribbon for freshly-added categories/products */
+.badge-new{
+  position:absolute;
+  top:16px; left:-34px;
+  transform:rotate(-40deg);
+  background:linear-gradient(90deg,var(--fire-1),var(--fire-2));
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1px;
+  padding:5px 40px;
+  z-index:3;
+  box-shadow:0 4px 10px rgba(0,0,0,.35);
+}
+
+/* ==========================================================================
+   PRODUCT CARD extra polish (products.html tiles, incl. new Rescue/Safety)
+   ========================================================================== */
+.product-card{
+  position:relative;
+  overflow:hidden;
+  transform-style:preserve-3d;
+  will-change:transform;
+}
+.product-card .product-card-img{
+  position:relative;
+  overflow:hidden;
+  border-radius:12px;
+}
+.product-card .product-card-img img{
+  transition:transform .55s cubic-bezier(.16,1,.3,1);
+}
+.product-card:hover .product-card-img img{
+  transform:scale(1.1) rotate(-1deg);
+}
+.product-card .product-card-img::after{
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(115deg, transparent 40%, rgba(255,255,255,.18) 50%, transparent 60%);
+  transform:translateX(-120%);
+  transition:transform .8s ease;
+}
+.product-card:hover .product-card-img::after{ transform:translateX(120%); }
+
+/* stagger delays via inline --i custom property set by JS */
+.catalog-card, .product-card, .rk-feature, .rk-stat{
+  transition-delay: calc(var(--i, 0) * 60ms);
+}
+
+/* ==========================================================================
+   PRODUCT DETAIL GALLERY polish
+   ========================================================================== */
+.gallery-main{
+  position:relative;
+  overflow:hidden;
+  border-radius:16px;
+}
+.gallery-main img{
+  transition:transform .6s cubic-bezier(.16,1,.3,1);
+}
+.gallery-main:hover img{ transform:scale(1.06); }
+
+/* animated fill on spec table rows */
+.spec-table tr{
+  position:relative;
+}
+.spec-table tr::before{
+  content:'';
+  position:absolute; left:0; top:0; bottom:0; width:3px;
+  background:linear-gradient(var(--fire-1), var(--gold));
+  transform:scaleY(0);
+  transform-origin:top;
+  transition:transform .4s ease;
+}
+.spec-table tr:hover::before{ transform:scaleY(1); }
+.spec-table tr:hover td{ color:var(--text) !important; }
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width:900px){
+  .category-hero{ min-height:auto; padding:60px 0 20px; }
+  .rk-stats{ margin-top:20px; }
+}

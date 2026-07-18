@@ -1,0 +1,191 @@
+/*==================================================
+   YEN LEE FIREWELD — SITE ENHANCEMENTS
+   Professional header, logo background & floating
+   contact buttons. Loaded AFTER all other stylesheets
+   so it safely overrides older, conflicting rules.
+===================================================*/
+
+/* ---------- TOP BAR ---------- */
+
+.top-bar{
+    background:linear-gradient(90deg,#6e0000 0%,#b71c1c 55%,#d62828 100%) !important;
+    letter-spacing:.3px;
+}
+
+.top-left span,
+.top-right span{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+}
+
+/* ---------- HEADER SHELL ---------- */
+
+#header{
+    background:rgba(255,255,255,.98) !important;
+    border-bottom:3px solid #d62828;
+    box-shadow:0 4px 18px rgba(0,0,0,.06);
+}
+
+#header.is-scrolled{
+    box-shadow:0 10px 30px rgba(0,0,0,.14);
+}
+
+/* ---------- LOGO BADGE / BACKGROUND ---------- */
+
+.logo-link{
+    position:relative;
+    padding:6px 14px 6px 6px;
+    border-radius:16px;
+    transition:.3s ease;
+}
+
+.logo-img{
+    background:transparent;
+    border-radius:0;
+    padding:0;
+    box-shadow:none;
+    transition:transform .35s ease;
+}
+
+.logo-link:hover .logo-img{
+    transform:scale(1.06);
+}
+
+.logo-text h1{
+    background:linear-gradient(90deg,#111827,#7a0000);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+/* ---------- NAV LINK UNDERLINE ---------- */
+
+nav ul li a{
+    position:relative;
+    padding-bottom:4px;
+}
+
+nav ul li a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0;
+    height:2px;
+    background:linear-gradient(90deg,#d62828,#ffb703);
+    transition:width .3s ease;
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after{
+    width:100%;
+}
+
+nav ul li a.active{
+    color:#d62828;
+}
+
+/* ---------- FLOATING CALL + EMAIL BUTTONS (unified) ---------- */
+
+.floating-email,
+.call-float{
+    position:fixed;
+    right:26px;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff !important;
+    font-size:24px;
+    text-decoration:none;
+    z-index:99999;
+    box-shadow:0 10px 24px rgba(0,0,0,.3);
+    transition:transform .3s ease, box-shadow .3s ease;
+}
+
+.call-float{
+    bottom:100px;
+    background:linear-gradient(135deg,#28a745,#128c3e) !important;
+    animation:pulseGreen 2.4s infinite;
+}
+
+.floating-email{
+    bottom:28px;
+    background:linear-gradient(135deg,#d62828,#7a0000) !important;
+    animation:pulseRed 2.4s infinite;
+}
+
+.floating-email:hover,
+.call-float:hover{
+    transform:scale(1.12);
+    box-shadow:0 14px 30px rgba(0,0,0,.4);
+}
+
+/* tooltip label */
+
+.floating-email::before,
+.call-float::before{
+    content:attr(title);
+    position:absolute;
+    right:72px;
+    background:#111827;
+    color:#fff;
+    padding:7px 14px;
+    border-radius:8px;
+    font-size:13px;
+    font-weight:600;
+    white-space:nowrap;
+    opacity:0;
+    transform:translateX(12px);
+    transition:.25s ease;
+    pointer-events:none;
+    box-shadow:0 6px 16px rgba(0,0,0,.25);
+}
+
+.floating-email:hover::before,
+.call-float:hover::before{
+    opacity:1;
+    transform:translateX(0);
+}
+
+@keyframes pulseRed{
+    0%{ box-shadow:0 0 0 0 rgba(214,40,40,.55); }
+    70%{ box-shadow:0 0 0 16px rgba(214,40,40,0); }
+    100%{ box-shadow:0 0 0 0 rgba(214,40,40,0); }
+}
+
+@keyframes pulseGreen{
+    0%{ box-shadow:0 0 0 0 rgba(40,167,69,.55); }
+    70%{ box-shadow:0 0 0 16px rgba(40,167,69,0); }
+    100%{ box-shadow:0 0 0 0 rgba(40,167,69,0); }
+}
+
+@media (max-width:768px){
+
+    .floating-email,
+    .call-float{
+        width:50px;
+        height:50px;
+        font-size:20px;
+        right:16px;
+    }
+
+    .call-float{ bottom:86px; }
+    .floating-email{ bottom:22px; }
+
+    .floating-email::before,
+    .call-float::before{
+        display:none;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce){
+    .call-float,
+    .floating-email{
+        animation:none;
+    }
+}

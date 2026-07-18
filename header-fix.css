@@ -1,0 +1,116 @@
+/*==================================================
+   YEN LEE FIREWELD — HEADER FIX
+   Keeps "YEN LEE FIREWELD" on a single line and the
+   Get Quote button pinned to the right at every
+   browser zoom level (desktop/tablet widths).
+   Loaded LAST so it overrides all earlier header CSS.
+===================================================*/
+
+#header .container{
+    flex-wrap:nowrap;
+    gap:12px;
+}
+
+.logo,
+.logo-link{
+    flex-shrink:0;
+}
+
+.logo-img{
+    flex-shrink:0;
+}
+
+.logo-text{
+    min-width:0;
+}
+
+.logo-text h1{
+    white-space:nowrap;
+    font-size:clamp(16px, 1.7vw, 30px);
+}
+
+.logo-text p{
+    white-space:nowrap;
+    font-size:clamp(9px, 0.85vw, 12px);
+}
+
+nav{
+    flex:1 1 auto;
+    min-width:0;
+    display:flex;
+    justify-content:flex-end;
+}
+
+nav > ul{
+    flex-wrap:nowrap;
+}
+
+nav ul li{
+    margin-left:clamp(14px, 1.8vw, 30px);
+}
+
+nav ul li a{
+    white-space:nowrap;
+    font-size:clamp(13px, 1vw, 16px);
+}
+
+header .btn{
+    flex-shrink:0;
+    white-space:nowrap;
+    margin-left:clamp(10px, 1.5vw, 20px);
+    font-size:clamp(13px, 0.95vw, 15px);
+    padding:clamp(9px, 1vw, 12px) clamp(16px, 2vw, 28px);
+}
+
+/* Below tablet breakpoint the mobile menu takes over anyway,
+   so let the normal mobile rules in responsive.css apply. */
+@media (max-width:768px){
+
+    #header .container{
+        flex-wrap:wrap;
+    }
+
+    nav{
+        justify-content:flex-start;
+    }
+}
+
+/*==================================================
+   FLOATING CALL + EMAIL BUTTONS — PROFESSIONAL COLOURS
+   Replaces the bright green/red combo with the site's
+   own brand palette (deep maroon + dark charcoal navy).
+===================================================*/
+
+.call-float{
+    background:linear-gradient(135deg,#1f2937,#0b0f19) !important;
+    animation:pulseNavy 2.6s infinite;
+}
+
+.floating-email{
+    background:linear-gradient(135deg,#7a0000,#4a0000) !important;
+    animation:pulseMaroon 2.6s infinite;
+}
+
+.floating-email:hover,
+.call-float:hover{
+    transform:scale(1.08);
+    box-shadow:0 12px 26px rgba(0,0,0,.35);
+}
+
+.floating-email::before,
+.call-float::before{
+    background:#1f2937;
+    box-shadow:0 6px 16px rgba(0,0,0,.2);
+}
+
+@keyframes pulseMaroon{
+    0%{ box-shadow:0 0 0 0 rgba(122,0,0,.45); }
+    70%{ box-shadow:0 0 0 14px rgba(122,0,0,0); }
+    100%{ box-shadow:0 0 0 0 rgba(122,0,0,0); }
+}
+
+@keyframes pulseNavy{
+    0%{ box-shadow:0 0 0 0 rgba(31,41,55,.45); }
+    70%{ box-shadow:0 0 0 14px rgba(31,41,55,0); }
+    100%{ box-shadow:0 0 0 0 rgba(31,41,55,0); }
+}

@@ -1,0 +1,326 @@
+/* ==========================================================================
+   YEN LEE FIREWELD — ENTERPRISE LIGHT THEME (2026 REFRESH)
+   Loaded LAST on every page, after premium-2026.css.
+   Re-skins the dark "fire" theme into a clean, light, corporate
+   industrial/fire-protection look, using the required brand palette:
+     Primary:    Dark Navy   #0A1F44
+     Secondary:  Fire Red    #D62828
+     Accent:     Orange      #F77F00
+     Background: White / Light Gray #F5F7FA
+     Text:       Dark Gray
+   Every selector below intentionally mirrors premium-2026.css so it wins
+   the cascade (same specificity, loaded later) without touching markup.
+   ========================================================================== */
+
+:root{
+  /* Core surfaces — swapped from near-black to light */
+  --ink:#F5F7FA;
+  --ink-2:#FFFFFF;
+  --panel:rgba(255,255,255,.72);
+  --panel-solid:#FFFFFF;
+  --line:rgba(10,31,68,.10);
+  --line-2:rgba(10,31,68,.16);
+
+  /* Text */
+  --text:#1E2530;
+  --text-dim:#5B6472;
+
+  /* Brand colors (re-themed from "fire" to Navy/Red/Orange) */
+  --navy:#0A1F44;
+  --navy-2:#123166;
+  --fire-1:#F77F00;
+  --fire-2:#D62828;
+  --fire-3:#F77F00;
+  --gold:#F77F00;
+  --glow: 0 12px 40px rgba(10,31,68,.14);
+  --radius:16px;
+}
+
+*{ scrollbar-color: var(--fire-2) #e7ebf1; }
+::-webkit-scrollbar-track{ background:#e7ebf1; }
+::-webkit-scrollbar-thumb{ background:linear-gradient(var(--navy),var(--fire-2)); }
+
+html{ background:var(--ink) !important; }
+
+body{
+  background:var(--ink) !important;
+  color:var(--text) !important;
+}
+
+/* Soft light backdrop instead of the dark ember-lit grid */
+body::before{
+  background:
+    radial-gradient(1100px 550px at 12% -12%, rgba(247,127,0,.08), transparent 60%),
+    radial-gradient(1000px 650px at 108% 6%, rgba(214,40,40,.06), transparent 55%),
+    radial-gradient(900px 500px at 50% 120%, rgba(10,31,68,.05), transparent 55%),
+    linear-gradient(180deg, #FFFFFF 0%, #F5F7FA 100%) !important;
+}
+body::after{
+  background-image:
+    linear-gradient(rgba(10,31,68,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10,31,68,.035) 1px, transparent 1px) !important;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 90%);
+}
+
+/* Ember canvas + cursor glow: dial back to a subtle warm accent on light bg */
+#ember-canvas{ opacity:.28; }
+#cursor-glow{
+  background:radial-gradient(circle, rgba(247,127,0,.10), transparent 70%) !important;
+  mix-blend-mode:multiply;
+}
+
+/* ===================== TOP BAR ===================== */
+.top-bar{
+  background:linear-gradient(90deg, var(--navy), var(--navy-2)) !important;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  color:rgba(255,255,255,.85) !important;
+}
+.top-bar a, .top-bar span{ color:rgba(255,255,255,.92) !important; }
+
+/* ===================== HEADER / NAV — GLASSMORPHISM ===================== */
+header, #header{
+  background:rgba(255,255,255,.68) !important;
+  backdrop-filter:blur(18px) saturate(160%);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  border-bottom:1px solid var(--line) !important;
+  box-shadow:0 8px 30px rgba(10,31,68,.08);
+}
+header.scrolled, #header.scrolled{
+  background:rgba(255,255,255,.92) !important;
+  box-shadow:0 10px 34px rgba(10,31,68,.12);
+}
+.logo-text h1{
+  background:linear-gradient(90deg,var(--navy),var(--fire-2));
+  -webkit-background-clip:text; background-clip:text; color:transparent !important;
+}
+.logo-text p{ color:var(--text-dim) !important; letter-spacing:.08em; }
+
+nav ul li a{
+  color:var(--navy) !important;
+  font-weight:600;
+  transition:color .25s ease;
+}
+nav ul li a:hover{ color:var(--fire-2) !important; }
+nav ul li a::after{
+  background:linear-gradient(90deg,var(--fire-3),var(--fire-2)) !important;
+}
+nav ul li a.active{ color:var(--fire-2) !important; }
+
+.dropdown-menu{
+  background:rgba(255,255,255,.98) !important;
+  border:1px solid var(--line-2) !important;
+  box-shadow:0 25px 60px rgba(10,31,68,.16), 0 0 0 1px rgba(10,31,68,.03) !important;
+}
+.dropdown-menu li a{ color:var(--text-dim) !important; }
+.dropdown-menu li a:hover{
+  color:var(--fire-2) !important;
+  background:rgba(247,127,0,.08) !important;
+}
+
+/* Buttons — red gradient with smooth hover, ripple-ready */
+header .btn, .btn, a.btn{
+  background:linear-gradient(135deg,var(--fire-2),#a91d1d) !important;
+  color:#fff !important;
+  box-shadow:0 10px 26px rgba(214,40,40,.30);
+  position:relative;
+  overflow:hidden;
+}
+header .btn:hover, .btn:hover, a.btn:hover{
+  box-shadow:0 16px 36px rgba(214,40,40,.42);
+}
+.menu-toggle{ color:var(--navy) !important; }
+
+@media (max-width:900px){
+  nav ul{
+    background:rgba(255,255,255,.98) !important;
+    border-top:1px solid var(--line);
+  }
+}
+
+/* ===================== PAGE BANNER / BREADCRUMB ===================== */
+.page-banner{
+  background:
+    radial-gradient(700px 300px at 20% 0%, rgba(247,127,0,.14), transparent 70%),
+    linear-gradient(180deg, var(--navy), var(--navy-2)) !important;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.page-banner h1{
+  background:linear-gradient(90deg,#fff, var(--gold));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.breadcrumb, .breadcrumb a, .breadcrumb .current{ color:rgba(255,255,255,.75) !important; }
+.breadcrumb a:hover{ color:var(--gold) !important; }
+
+/* ===================== CARDS — rounded, soft-shadow, glass ===================== */
+.product-card, .service-card, .card, .brand-card, .project-card, .cert-card,
+.industry-card, .app-card, .testimonial-card, .blog-card, .team-card{
+  background:#FFFFFF !important;
+  border:1px solid var(--line) !important;
+  border-radius:var(--radius) !important;
+  backdrop-filter:none;
+  box-shadow:0 12px 32px rgba(10,31,68,.08);
+  color:var(--text) !important;
+}
+.product-card:hover, .service-card:hover, .card:hover, .brand-card:hover,
+.project-card:hover, .industry-card:hover, .app-card:hover{
+  transform:translateY(-10px) !important;
+  border-color:rgba(247,127,0,.35) !important;
+  box-shadow:0 26px 60px rgba(10,31,68,.16) !important;
+}
+.product-card h3, .service-card h3, .card h3, .project-card h3{ color:var(--navy) !important; }
+.product-card p, .service-card p, .card p, .project-card p{ color:var(--text-dim) !important; }
+
+.section-title h4{ color:var(--fire-2) !important; }
+.section-title h2{ color:var(--navy) !important; }
+p, li, span, td, .detail-lead, .tab-panel p{ color:var(--text-dim); }
+.detail-info h1, .detail-info h1 *{ color:var(--navy) !important; }
+
+/* ===================== PRODUCT DETAIL ===================== */
+.detail-gallery, .gallery-main{
+  background:#FFFFFF !important;
+  border:1px solid var(--line) !important;
+}
+.gallery-thumbs button{
+  border:1px solid var(--line) !important;
+  background:#FFFFFF !important;
+}
+.gallery-thumbs button.active{ border-color:var(--fire-2) !important; box-shadow:0 0 0 2px rgba(214,40,40,.2); }
+
+.cat-tag{
+  background:linear-gradient(135deg, rgba(247,127,0,.14), rgba(214,40,40,.08));
+  border:1px solid rgba(247,127,0,.35);
+  color:#b35900 !important;
+}
+.sku-line, .sku-line strong{ color:var(--text-dim) !important; }
+.rating-row{ color:var(--fire-1) !important; }
+.rt-text{ color:var(--text-dim) !important; }
+
+.cert-pill{
+  background:rgba(10,31,68,.05) !important;
+  border:1px solid var(--line-2) !important;
+  color:var(--navy) !important;
+}
+.quick-specs{
+  background:#FFFFFF !important;
+  border:1px solid var(--line) !important;
+}
+.qs-item h5{ color:var(--fire-2) !important; }
+.qs-item p{ color:var(--navy) !important; }
+
+.btn-primary-lg{
+  background:linear-gradient(135deg,var(--fire-2),#a91d1d) !important;
+  box-shadow:0 10px 30px rgba(214,40,40,.32);
+}
+.btn-ghost-lg{
+  background:rgba(10,31,68,.04) !important;
+  border:1px solid var(--line-2) !important;
+  color:var(--navy) !important;
+  backdrop-filter:none;
+}
+.trust-strip{ border-top:1px solid var(--line) !important; }
+.trust-item{ color:var(--text-dim) !important; }
+
+/* Tabs */
+.tab-nav{ border-bottom:1px solid var(--line) !important; }
+.tab-nav button{ color:var(--text-dim) !important; }
+.tab-nav button.active{
+  color:var(--fire-2) !important;
+  border-color:var(--line) !important;
+  border-bottom-color:#fff !important;
+  background:#fff !important;
+}
+.spec-table tr{ border-bottom:1px solid var(--line); }
+.spec-table td{ color:var(--text-dim) !important; }
+.spec-table tr td:first-child{ color:var(--navy) !important; }
+.feature-list li{ color:var(--text-dim); }
+.feature-list li::before{ color:var(--fire-1); }
+.download-list a{
+  background:#fff !important; border:1px solid var(--line) !important; color:var(--navy) !important;
+}
+.download-list a:hover{ border-color:var(--fire-2) !important; }
+.dl-meta{ color:var(--text-dim) !important; }
+
+/* ===================== FORMS ===================== */
+input, textarea, select{
+  background:#FFFFFF !important;
+  border:1px solid var(--line-2) !important;
+  color:var(--text) !important;
+}
+input:focus, textarea:focus, select:focus{
+  border-color:var(--fire-2) !important;
+  box-shadow:0 0 0 3px rgba(214,40,40,.12) !important;
+}
+input::placeholder, textarea::placeholder{ color:#9aa2ad !important; }
+
+/* ===================== FOOTER ===================== */
+footer{
+  background:linear-gradient(180deg, var(--navy), #061530) !important;
+  border-top:1px solid rgba(255,255,255,.06) !important;
+  color:rgba(255,255,255,.72) !important;
+}
+footer h3, footer h4{ color:#fff !important; }
+footer a{ color:rgba(255,255,255,.72) !important; }
+footer a:hover{ color:var(--gold) !important; }
+
+/* ===================== HOMEPAGE HERO ===================== */
+.hero, #hero, .home-hero{
+  background:radial-gradient(ellipse 90% 60% at 50% -10%, rgba(247,127,0,.16), transparent 60%), var(--navy) !important;
+}
+
+/* Animated counters */
+.counter-num, .stat-num, .counter{
+  background:linear-gradient(90deg,var(--fire-1),var(--fire-2));
+  -webkit-background-clip:text; background-clip:text; color:transparent !important;
+}
+.statistics{
+  background:linear-gradient(180deg, transparent, rgba(10,31,68,.04), transparent) !important;
+}
+.stat-box{
+  background:#FFFFFF !important;
+  border:1px solid var(--line) !important;
+  box-shadow:0 10px 28px rgba(10,31,68,.08);
+}
+.stat-box:hover{ border-color:rgba(247,127,0,.35) !important; }
+.stat-box p{ color:var(--text-dim) !important; }
+
+/* Preloader */
+#preloader{ background:#FFFFFF !important; }
+#preloader h2{
+  background:linear-gradient(90deg,var(--navy),var(--fire-2));
+  -webkit-background-clip:text; background-clip:text; color:transparent !important;
+}
+.spinner{
+  border-color:rgba(10,31,68,.12) !important;
+  border-top-color:var(--fire-2) !important;
+}
+
+/* ===================== BUTTON RIPPLE ===================== */
+.btn, a.btn, .btn-primary-lg, .btn-ghost-lg, button{
+  isolation:isolate;
+}
+.ripple-effect{
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,.55);
+  transform:scale(0);
+  animation:rippleAnim .6s ease-out forwards;
+  pointer-events:none;
+  z-index:0;
+}
+@keyframes rippleAnim{
+  to{ transform:scale(2.6); opacity:0; }
+}
+
+/* ===================== ZOOM / SLIDE-IN UTILITIES ===================== */
+.reveal-zoom{ opacity:0; transform:scale(.92); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+.reveal-zoom.in-view{ opacity:1; transform:scale(1); }
+
+.reveal-left{ opacity:0; transform:translateX(-40px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+.reveal-left.in-view{ opacity:1; transform:translateX(0); }
+
+.reveal-right{ opacity:0; transform:translateX(40px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+.reveal-right.in-view{ opacity:1; transform:translateX(0); }
+
+/* Parallax image wrapper */
+.parallax-img-wrap{ overflow:hidden; position:relative; }
+.parallax-img-wrap img{ will-change:transform; transition:transform .1s linear; }
