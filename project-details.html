@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pdPageTitle">Project Details | Yen Lee Fireweld</title>
+<meta name="description" id="pdMetaDesc" content="Fire protection project by Yen Lee Fireweld.">
+<meta name="robots" content="index, follow">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/enhance.css">
+<link rel="stylesheet" href="css/transitions.css">
+<link rel="stylesheet" href="css/header-fix.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="css/premium-2026.css">
+    <link rel="stylesheet" href="css/enterprise-light-theme.css">
+    <link rel="stylesheet" href="css/product-experience.css">
+<link rel="stylesheet" href="css/project-public.css">
+</head>
+<body>
+
+<div class="page-transition" aria-hidden="true">
+  <div class="pt-back"></div>
+  <div class="panel-wipe"><div class="pt-mark"><img src="images/logo.png" alt=""><span>Yen Lee Fireweld</span></div></div>
+</div>
+<noscript><style>.page-transition{display:none !important;}</style></noscript>
+
+<div id="pdLoading" style="min-height:100vh; display:flex; align-items:center; justify-content:center; color:var(--text-dim,#9aa0ad); background:var(--ink,#05060a);">
+  <p>Loading project…</p>
+</div>
+
+<main id="pdRoot" hidden>
+
+  <section class="pd-hero">
+    <img id="pdHeroImg" src="" alt="">
+    <div class="pd-hero-content">
+      <div class="container">
+        <span class="pd-eyebrow" id="pdCategory">Category</span>
+        <h1 id="pdTitle">Project Name</h1>
+        <div class="pd-hero-meta">
+          <span id="pdSiteName">Site name</span>
+          <span id="pdLocation">Location</span>
+          <span id="pdStatus"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pd-section" data-reveal>
+    <h2>Site Information</h2>
+    <div class="pd-info-grid">
+      <div class="pd-info-card"><div class="pd-info-label">Client</div><div class="pd-info-value" id="pdClient">—</div></div>
+      <div class="pd-info-card"><div class="pd-info-label">Working Days</div><div class="pd-info-value" data-countto="0" id="pdDays">0</div></div>
+      <div class="pd-info-card"><div class="pd-info-label">Start Date</div><div class="pd-info-value" id="pdStart">—</div></div>
+      <div class="pd-info-card"><div class="pd-info-label">Completion Date</div><div class="pd-info-value" id="pdEnd">—</div></div>
+      <div class="pd-info-card"><div class="pd-info-label">Site Condition</div><div class="pd-info-value" id="pdCondition">—</div></div>
+    </div>
+  </section>
+
+  <section class="pd-section" data-reveal>
+    <h2>Project Description</h2>
+    <div id="pdDescription" style="color:var(--text-dim,#9aa0ad); line-height:1.7;"></div>
+  </section>
+
+  <section class="pd-section" data-reveal id="pdBASection" hidden>
+    <h2>Before &amp; After</h2>
+    <div class="pd-ba-slider" id="pdBASlider">
+      <img id="pdBeforeImg" src="" alt="Before">
+      <div class="pd-ba-after" id="pdAfterWrap"><img id="pdAfterImg" src="" alt="After"></div>
+      <div class="pd-ba-handle" id="pdBAHandle"></div>
+      <span class="pd-ba-label before">Before</span>
+      <span class="pd-ba-label after">After</span>
+    </div>
+  </section>
+
+  <section class="pd-section" data-reveal id="pdTimelineSection" hidden>
+    <h2>Project Timeline</h2>
+    <div class="pd-timeline" id="pdTimeline"></div>
+  </section>
+
+  <section class="pd-section" data-reveal>
+    <h2>Scope of Work</h2>
+    <div id="pdScope" style="color:var(--text-dim,#9aa0ad); line-height:1.7;"></div>
+  </section>
+
+  <section class="pd-section" data-reveal id="pdSafetySection" hidden>
+    <h2>Safety Measures &amp; Certifications</h2>
+    <div class="pd-tag-list" id="pdSafetyTags"></div>
+  </section>
+
+  <section class="pd-section" data-reveal id="pdEquipmentSection" hidden>
+    <h2>Equipment Used</h2>
+    <div class="pd-tag-list" id="pdEquipmentTags"></div>
+  </section>
+
+  <section class="pd-section" data-reveal id="pdGallerySection" hidden>
+    <h2>Image Gallery</h2>
+    <div class="pd-gallery" id="pdGallery"></div>
+  </section>
+
+  <section class="pd-section" data-reveal id="pdMapSection" hidden>
+    <h2>Location</h2>
+    <iframe class="pd-map-frame" id="pdMapFrame" src="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+
+  <section class="pd-section" data-reveal id="pdTestimonialSection" hidden>
+    <h2>Client Feedback</h2>
+    <div class="pd-testimonial" id="pdTestimonial"></div>
+  </section>
+
+  <section class="pd-section" data-reveal>
+    <div class="pd-actions-row">
+      <a href="#" class="pd-action-btn primary" id="pdDownloadPdf" hidden>⬇ Download PDF Report</a>
+      <button class="pd-action-btn" id="pdShareBtn">↗ Share Project</button>
+      <a href="contact.html" class="pd-action-btn">Request a Quotation</a>
+    </div>
+    <div class="pd-nav-row">
+      <a class="pd-nav-card" id="pdPrevLink" href="#"><div class="lbl">← Previous</div><div class="nm">—</div></a>
+      <a class="pd-nav-card" id="pdNextLink" href="#" style="text-align:right;"><div class="lbl">Next →</div><div class="nm">—</div></a>
+    </div>
+  </section>
+
+  <section class="pd-section" data-reveal id="pdRelatedSection" hidden>
+    <h2>Related Projects</h2>
+    <div class="pd-related-grid" id="pdRelatedGrid"></div>
+  </section>
+
+</main>
+
+<div class="pd-lightbox" id="pdLightbox">
+  <button class="pd-lightbox-close" id="pdLightboxClose">✕</button>
+  <button class="pd-lightbox-nav prev" id="pdLightboxPrev">‹</button>
+  <img id="pdLightboxImg" src="" alt="">
+  <button class="pd-lightbox-nav next" id="pdLightboxNext">›</button>
+</div>
+
+<a href="tel:+6562909890" class="call-float" title="Call Us">📞</a>
+
+<script src="js/script.js"></script>
+<script src="js/transitions.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="js/premium-2026.js"></script>
+<script src="js/enterprise-enhance.js"></script>
+<script src="js/product-experience.js"></script>
+<script src="js/project-details.js"></script>
+</body>
+</html>
