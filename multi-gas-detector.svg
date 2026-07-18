@@ -1,0 +1,24 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g5" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffcf6a"/><stop offset="100%" stop-color="#ff5b1f"/>
+    </linearGradient>
+  </defs>
+  <circle cx="200" cy="200" r="190" fill="#0a0d14" stroke="#ffcf6a" stroke-opacity="0.2" stroke-width="2"/>
+  <!-- device body -->
+  <rect x="150" y="120" width="100" height="170" rx="18" fill="none" stroke="url(#g5)" stroke-width="9"/>
+  <!-- screen -->
+  <rect x="166" y="140" width="68" height="46" rx="6" fill="none" stroke="#fff" stroke-width="5"/>
+  <text x="200" y="171" text-anchor="middle" font-family="monospace" font-size="20" fill="#ffcf6a">0.0</text>
+  <!-- buttons -->
+  <circle cx="177" cy="205" r="10" fill="none" stroke="#fff" stroke-width="4"/>
+  <circle cx="200" cy="205" r="10" fill="none" stroke="#fff" stroke-width="4"/>
+  <circle cx="223" cy="205" r="10" fill="none" stroke="#fff" stroke-width="4"/>
+  <!-- speaker grille -->
+  <path d="M170 235 h60 M170 245 h60 M170 255 h60" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+  <!-- clip -->
+  <path d="M244 150 h18 v40 h-18" fill="none" stroke="#ffcf6a" stroke-width="6" stroke-linecap="round"/>
+  <!-- signal waves -->
+  <path d="M262 130 q14 20 0 40" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity="0.55"/>
+  <path d="M276 118 q26 34 0 68" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity="0.35"/>
+</svg>

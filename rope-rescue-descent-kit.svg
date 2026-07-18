@@ -1,0 +1,23 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffcf6a"/><stop offset="100%" stop-color="#ff2d2d"/>
+    </linearGradient>
+  </defs>
+  <circle cx="200" cy="200" r="190" fill="#0a0d14" stroke="#ffcf6a" stroke-opacity="0.2" stroke-width="2"/>
+  <!-- coiled rope -->
+  <g fill="none" stroke="url(#g2)" stroke-width="8" stroke-linecap="round">
+    <ellipse cx="180" cy="230" rx="80" ry="46"/>
+    <ellipse cx="180" cy="215" rx="63" ry="36"/>
+    <ellipse cx="180" cy="200" rx="46" ry="26"/>
+  </g>
+  <!-- rope tail -->
+  <path d="M254 235 C 300 250, 310 190, 270 160 C 250 145, 255 120, 280 110"
+        fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity="0.9"/>
+  <!-- figure-8 descender -->
+  <path d="M280 100 a14 14 0 1 0 0.1 0 M280 128 a14 14 0 1 0 0.1 0"
+        fill="none" stroke="#ffcf6a" stroke-width="6"/>
+  <path d="M280 114 v14" stroke="#ffcf6a" stroke-width="6"/>
+  <!-- carabiner bottom -->
+  <ellipse cx="150" cy="300" rx="13" ry="19" fill="none" stroke="#fff" stroke-width="5"/>
+</svg>
